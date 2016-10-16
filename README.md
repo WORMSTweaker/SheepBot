@@ -1,2 +1,2 @@
 # SheepBot
-A amazing python3 bot on discord !
+A amazing python3 discord bot !
