@@ -18,6 +18,7 @@ from db import Playlist
 from discord import opus
 from random import randint
 from cleverbot import Cleverbot
+from PParser import PParser
 
 
 wolfclient = wolframalpha.Client('K58L69-KG2G437U8V')
