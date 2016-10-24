@@ -1,3 +1,19 @@
+"""Copyright (C) 2016  Jbdo99&Clem133
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
 import asyncio
 import discord
 import logging
@@ -21,6 +37,7 @@ from discord import opus
 from random import randint
 from cleverbot import Cleverbot
 from mcstatus import MinecraftServer
+from PParser import PParser
 
 
 wolfclient = wolframalpha.Client('K58L69-KG2G437U8V')
@@ -318,7 +335,13 @@ def on_ready():
     hard = discord.Object(id="178882236324642816")
     yield from client.send_message(hard, "On :)")
     yield from client.change_status(discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
-    print ('GOOOOOOOOO!!')
+    print ('Ready')
+    
+
+            
+            
+    
+    
 
 
 
@@ -359,9 +382,17 @@ def on_message(message):
 
 
 
-        if message.content.startswith('ban'):
-            is_admin(message.author)
-            print("lol")
+        if message.content.startswith('prune'):
+            pruneday = message.content.replace('prune ','')
+            perms = message.channel.permissions_for(message.author)
+            for permi in perms:
+                if str(permi) == ("('administrator', True)") :
+                    print ('pruning by : ', message.author)
+                    yield from client.send_message(message.channel, 'Pruning...')
+                    pruned = yield from client.prune_members(message.server,days=int(pruneday))
+                    yield from client.send_message(message.channel, 'Pruned : '+str(pruned))
+                    
+                
 
 
 
@@ -409,7 +440,7 @@ def on_message(message):
 
         if message.content.startswith('listZik'):
             p=Playlist()
-            loul = p.getall()
+            loul = p.getAllLien()
             for mUzi in loul:
                 yield from client.send_message(message.channel, mUzi)
             return
@@ -469,7 +500,7 @@ def on_message(message):
             global playnext
             p = Playlist()
             lip = message.content.replace('addik ','')
-            p.addsong(lip)
+            p.addSong(lip)
             hard = discord.Object(id="178882236324642816")
             yield from client.send_message(hard, "added a Zik")
 
@@ -1053,7 +1084,7 @@ def on_message(message):
                 yield from client.delete_message(message)
                 print (message.content)
                 return
-        if message.content.startswith('Off'):
+        if message.content.startswith('Reboot'):
                 yield from client.send_typing(message.channel)
                 yield from asyncio.sleep(0.5)
                 yield from client.send_message(message.channel, 'Rebooooottt.....')
