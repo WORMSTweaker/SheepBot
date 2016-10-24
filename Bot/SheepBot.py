@@ -9,16 +9,18 @@ import string
 import ffmpy
 import random
 import wolframalpha
+import subprocess
 import credentials
 import re
 import inspect
+import mcrcon
 import youtube_dl
 from gtts import gTTS
 from db import Playlist
 from discord import opus
 from random import randint
 from cleverbot import Cleverbot
-from PParser import PParser
+from mcstatus import MinecraftServer
 
 
 wolfclient = wolframalpha.Client('K58L69-KG2G437U8V')
@@ -83,7 +85,7 @@ var = {
 "hello":"its me...",
 "Hi":"hello",
 "jb":"jb est mort!",
-"clem":"Le Dieux clément tout puissant (et pas dutout narcicisique vas vous repondre sous peu",
+"clem":"Le Dieux clément tout puissant (et pas dutout narcicisique vas vous repondre sous peu)",
 "lol":"mdr",
 "mdr":"lol",
 "LOL":"League Of legends",
@@ -405,6 +407,16 @@ def on_message(message):
             Zika = 'on'
 
 
+        if message.content.startswith('listZik'):
+            p=Playlist()
+            loul = p.getall()
+            for mUzi in loul:
+                yield from client.send_message(message.channel, mUzi)
+            return
+
+
+
+
         if message.content.startswith('autoZik'):
             global voice
             global porazika
@@ -592,6 +604,8 @@ def on_message(message):
             yield from client.delete_message(message)
             lunched = 'Nope'
             playnext = []
+            porazika = 'ui'
+            yield from asyncio.sleep(3)
             porazika = 'noup'
 
 
@@ -620,6 +634,28 @@ def on_message(message):
                         yield from client.send_message(message.channel, '{p.title} :\n{p.img}'.format(p=pod))
                 
 
+
+
+        if message.content.startswith('rcon'):
+            print("rcon")
+            rconeri = message.content.replace('rcon ','')
+            rconeri = rconeri.split(",")
+            rcon = mcrcon.MCRcon()
+
+            yield from client.send_message(message.channel,"connecting...")
+            port = int(rconeri[1])
+            rcon.connect(rconeri[0],port)
+            rcon.login(rconeri[2])
+            response = rcon.command(rconeri[3])
+            if response:
+                yield from client.send_message(message.channel,+("  %s" % response))
+            rcon.disconnect()
+
+        if message.content.startswith('Statut'):
+            statou = message.content.replace('Statut ','')
+            server = MinecraftServer.lookup(statou)
+            status = server.status()
+            yield from client.send_message(message.channel,"The server has {0} players and replied in {1} ms".format(status.players.online, status.latency))
 
 
 
@@ -657,12 +693,18 @@ def on_message(message):
 # dit 42
 
 
+        if message.content.startswith('open-serv'):
+            subprocess.call("start srv\se.cmd")
+            yield from client.send_message(message.channel, 'Ok')
+            yield from client.change_status(discord.Game(name='Minecraft'))
+
+
         if message.content.startswith('dit'):
             yield from client.send_message(message.channel, message.content.replace('dit',''))
 
 
         if message.content.startswith('42'):
-                yield from client.send_message(message.channel,random.choice(['Oui','Non','Mais oui c''est clair!','Peut étre..','Nope','oui','non','jsp','oui','non','non','oui','oui','non','VTFF']))
+            yield from client.send_message(message.channel,random.choice(['Oui','Non','Mais oui c''est clair!','Peut étre..','Nope','oui','non','jsp','oui','non','non','oui','oui','non','VTFF']))
 
 
 
@@ -1026,7 +1068,7 @@ def on_message(message):
                 print (message.author)
                 yield from client.start_private_message(message.author)
                 yield from client.delete_message(message)
-                yield from client.send_message(message.author, 'Hello!', tts=True)
+                yield from client.send_message(message.author, 'Hello!')
 
 
 #Useless
