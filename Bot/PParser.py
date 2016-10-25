@@ -14,7 +14,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 from subprocess import check_output
-
+import asyncio
+@asyncio.coroutine
 def PParser(url,meth="-g",decode=False):
     """
     Fonction pour recupérer une liste contenant les urls d une playlist
