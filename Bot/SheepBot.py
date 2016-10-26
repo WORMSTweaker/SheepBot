@@ -451,6 +451,20 @@ def on_message(message):
 
 
 
+        if message.content.startswith('vol'):
+            vol = message.content.replace('vol ','')
+            print(vol,'%')
+            player.volume = int(vol)/100
+            
+
+
+
+
+
+
+
+
+
         if message.content.startswith('autoZik'):
             global voice
             global porazika
@@ -473,7 +487,7 @@ def on_message(message):
                 playnext = []
                 player.stop()
             p=Playlist()
-            loul = p.getall()
+            loul = p.getAllLien()
             while True:
                 if Zika == 'off':
                     return
@@ -493,6 +507,7 @@ def on_message(message):
                         player.stop()
                         return
                     yield from asyncio.sleep(0.3)
+                print ('next song')
                 
 
         if message.content.startswith('addik'):
