@@ -383,6 +383,9 @@ def on_message(message):
 
 
         if message.content.startswith('prune'):
+            if message.server.name == 'FTW':
+                print ('FTW exept')
+                return
             pruneday = message.content.replace('prune ','')
             perms = message.channel.permissions_for(message.author)
             for permi in perms:
