@@ -46,6 +46,7 @@ client = discord.Client()
 servers = list(client.servers)
 Stopit = 'pls'
 porazika = 'non'
+vol = 50
 p1 = ""
 p2 = ""
 cp1 = "X"
@@ -452,6 +453,7 @@ def on_message(message):
 
 
         if message.content.startswith('vol'):
+            global vol
             vol = message.content.replace('vol ','')
             print(vol,'%')
             player.volume = int(vol)/100
@@ -473,6 +475,7 @@ def on_message(message):
             global musikal
             global autozik
             global playnext
+            global vol
             yield from client.delete_message(message)
             if autozik == 'on':
                 print ('conflit')
@@ -493,6 +496,7 @@ def on_message(message):
                     return
                 yield from client.send_typing(message.channel)
                 player = yield from voice.create_ytdl_player(random.choice(loul))
+                player.volume = int(vol)/100
                 player.start()
                 if not True:
                     return
@@ -543,6 +547,7 @@ def on_message(message):
             global musikal
             global playnext
             global porazika
+            global vol
             porazika = 'ui'
             yield from asyncio.sleep(0.5)
             if Zika == 'off':
@@ -579,6 +584,7 @@ def on_message(message):
                 tobirater = yield from client.send_message(message.channel, "Wait for it...")
                 yield from client.send_typing(message.channel)
                 player = yield from voice.create_ytdl_player(lipo)
+                player.volume = int(vol)/100
                 player.start()
                 print ('playing : ', player.title)
                 yield from client.change_presence(game=discord.Game(name=player.title))
