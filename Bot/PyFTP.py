@@ -16,7 +16,7 @@
 from ftplib import FTP
 class FTPV():
     def connect(host, login,mdp):
-        self.ftp = FTP('ftp.livehost.fr')
+        self.ftp = FTP(host)
         try:
             self.ftp.login(login,mdp)
         except Exception(e):
