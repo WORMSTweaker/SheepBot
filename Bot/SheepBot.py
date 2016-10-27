@@ -334,7 +334,7 @@ def on_ready():
     print(client.user.id)
     hard = discord.Object(id="178882236324642816")
     yield from client.send_message(hard, "On :)")
-    yield from client.change_status(discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
+    yield from client.change_presence(game=discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
     print ('Ready')
     
 
@@ -497,10 +497,10 @@ def on_message(message):
                 if not True:
                     return
                 print ('playing : ', player.title)
-                yield from client.change_status(discord.Game(name=player.title))
+                yield from client.change_presence(game=discord.Game(name=player.title))
                 hard = discord.Object(id="178882236324642816")
                 yield from client.send_message(hard, player.title)
-                while not player.is_done():
+                while player.is_playing():
                     if porazika == 'ui':
                         autozik = 'nop'
                         print ('ended')
@@ -581,18 +581,18 @@ def on_message(message):
                 player = yield from voice.create_ytdl_player(lipo)
                 player.start()
                 print ('playing : ', player.title)
-                yield from client.change_status(discord.Game(name=player.title))
+                yield from client.change_presence(game=discord.Game(name=player.title))
                 hard = discord.Object(id="178882236324642816")
                 yield from client.send_message(hard, player.title)
                 yield from client.edit_message(tobirater,':notes: :notes: :notes: :notes: :notes: ')
                 lunched = 'yep'
-                while not player.is_done():
-                    yield from asyncio.sleep(1)
+                while player.is_playing():
+                    yield from asyncio.sleep(0.5)
             lunched = 'Nope'
             playnext = []
             porazika = 'noup'
             autozik = 'nop'
-            yield from client.change_status(discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
+            yield from lient.change_presence(game=discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
 
 
 
@@ -741,11 +741,6 @@ def on_message(message):
 
 # dit 42
 
-
-        if message.content.startswith('open-serv'):
-            subprocess.call("start srv\se.cmd")
-            yield from client.send_message(message.channel, 'Ok')
-            yield from client.change_status(discord.Game(name='Minecraft'))
 
 
         if message.content.startswith('dit'):
@@ -934,7 +929,7 @@ def on_message(message):
                        yield from client.send_message(message.channel, "Vous ne pouvez pas jouer avec vous meme ! Tapez p4restart") 
                     else:
                         Jeu = Board(p1=cp1,p2=cp2)
-                        yield from client.change_status(discord.Game(name="Puissance 4"))
+                        yield from lient.change_presence(game=discord.Game(name="Puissance 4"))
                         tourplay = "p1"
                         yield from client.send_message(message.channel, "Au tour de P1 !")
 
@@ -1098,7 +1093,7 @@ def on_message(message):
 # change statut, Off et Hey bot(prgm test)!
 
         if message.content.startswith('bot'):
-                yield from client.change_status(discord.Game(name=message.content.replace('bot ','')))
+                yield from client.change_presence(game=discord.Game(name=message.content.replace('bot ','')))
                 yield from client.delete_message(message)
                 print (message.content)
                 return
