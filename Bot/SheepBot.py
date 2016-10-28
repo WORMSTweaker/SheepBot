@@ -51,12 +51,8 @@ p1 = ""
 p2 = ""
 cp1 = "X"
 cp2 = "O"
-touplay = ""
-global p1
-global p2
-global cp1
-global cp2
-global tourplay
+tourplay = ""
+
 
 ftp = ""
 
@@ -966,7 +962,7 @@ def on_message(message):
                    yield from client.send_message(message.channel, "Vous ne pouvez pas jouer avec vous meme ! Tapez p4restart") 
                 else:
                     Jeu = Board(p1=cp1,p2=cp2)
-                    yield from lient.change_status(game=discord.Game(name="Puissance 4"))
+                    yield from client.change_status(game=discord.Game(name="Puissance 4"))
                     tourplay = "p1"
                     yield from client.send_message(message.channel, "Au tour de P1 !")
 
@@ -992,18 +988,18 @@ def on_message(message):
         global cp2
         global trend
         global tourplay
-        global t
         global Jeu
         if (str(message.author) == p1 and tourplay =="p1"):
             collone = int(message.content.replace('play ',''))
             dernierJeton = Jeu.add(int(collone), cp1)
             trump=[]
+            trend=""
             if (len(cp1)==1 and len(cp2)==1):
                 trump=Jeu.print_l()
             else:
                 trump=Jeu.print_l(sizel="|             ")
-            for trend in trump:
-                trend = trend + t + "\n"
+            for toyota in trump:
+                trend = trend + toyota + "\n"
             yield from client.send_message(message.channel, trend)
             suiteMax = Jeu.check(dernierJeton)
             if suiteMax == 4:
@@ -1013,12 +1009,13 @@ def on_message(message):
             collone = int(message.content.replace('play ',''))
             dernierJeton = Jeu.add(int(collone), cp2)
             trump=[]
+            trend=""
             if (len(cp1)==1 and len(cp2)==1):
                 trump=Jeu.print_l()
             else:
                 trump=Jeu.print_l(sizel="|             ")
-            for t in trump:
-                trend = trend + t + "\n"
+            for toyota in trump:
+                trend = trend + toyota + "\n"
             yield from client.send_message(message.channel, trend)
             suiteMax = Jeu.check(dernierJeton)
             if suiteMax == 4:
