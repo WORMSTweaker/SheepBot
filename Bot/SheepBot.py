@@ -52,7 +52,8 @@ p2 = ""
 cp1 = "X"
 cp2 = "O"
 tourplay = ""
-
+fichier = open('log.txt','w')
+sys.stdout = fichier
 
 ftp = ""
 
