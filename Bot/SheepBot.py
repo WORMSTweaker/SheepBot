@@ -629,7 +629,7 @@ def on_message(message):
         playnext = []
         porazika = 'noup'
         autozik = 'nop'
-        yield from lient.change_presence(game=discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
+        yield from client.change_presence(game=discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
 
 
 
@@ -1201,6 +1201,6 @@ def on_message(message):
 
 print('presque pret')
 
-client.run('clemen.landier2@gmail.com','3690741')
+client.run('mrjbdo99@gmail.com','Progcle2014')
 
 # END

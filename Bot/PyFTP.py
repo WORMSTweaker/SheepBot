@@ -23,25 +23,23 @@ class FTPV():
 
 	def connect(login, mdp):
 		"""Fonction permettant de se connecter"""
-        try:
-            self.ftp.login(login, mdp)
-        except Exception(e):
-            raise e
+		try:
+			self.ftp.login(login, mdp)
+		except Exception(e):
+				raise e
 
-    def FileList(SDirectory="main"):
-    	"""Obtenir une liste des fichiers"""
-        if (SDirectory == "main"):
-            self.lfile = self.ftp.nlst()
-        else:
-            self.lfile = self.ftp.nlst(SDirectory)
-        return self.lfile
+	def FileList(SDirectory="main"):
+		if (SDirectory == "main"):
+			self.lfile = self.ftp.nlst()
+		else:
+			self.lfile = self.ftp.nlst(SDirectory)
+		return self.lfile
 
-    def FileDict(SDirectory="main"):
-    	"""Obtenir un dictionnaire des fichiers"""
-        self.dfile = {}
-        if (SDirectory == "main"):
-            for i in range(len(self.ftp.nlst())):
-                self.dfile[i] = self.ftp.nlst()[i]
-        else:
-            for i in range(len(self.ftp.nlst(SDirectory))):
-                self.dfile[i] = self.ftp.nlst(SDirectory)[i]
+	def FileDict(SDirectory="main"):
+		self.dfile = {}
+		if (SDirectory == "main"):
+			for i in range(len(self.ftp.nlst())):
+				self.dfile[i] = self.ftp.nlst()[i]
+		else:
+			for i in range(len(self.ftp.nlst(SDirectory))):
+				self.dfile[i] = self.ftp.nlst(SDirectory)[i]
