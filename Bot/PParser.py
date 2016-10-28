@@ -15,20 +15,24 @@
 """
 from subprocess import check_output
 import asyncio
+
+
 @asyncio.coroutine
-def PParser(url,meth="-g",decode=False):
+def PParser(
+        url, meth="-g", decode=False):
     """
     Fonction pour recupérer une liste contenant les urls d une playlist
     Utilisation : PParser(url, methode(-g ou -e))
     """
-    entries=[]
+    entries = []
     cally = check_output(["youtube-dl", meth, str(url)])
     colly = cally.decode("utf-8")
     for entri in colly.split("\n"):
-    	if (decode == True):
-    		entries.append(str(entri))
-    	else:
-    		entries.append(str.encode(entri))
-    if (decode == False):
-    	del entries[-1]
+        if decode:
+            entries.append(str(entri))
+        else:
+            entries.append(str.encode(entri))
+
+    if (decode is not True):
+        del entries[-1]
     return entries

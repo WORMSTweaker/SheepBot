@@ -99,7 +99,7 @@ var = {
 "salop":":point_up_2: ",
 "non":"si!",
 "NON":"SI!!",
-"Non":"sisi",
+"Non": "sisi",
 "Hello":"its me...",
 "hello":"its me...",
 "Hi":"hello",

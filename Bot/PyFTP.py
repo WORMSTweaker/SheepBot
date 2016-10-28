@@ -14,24 +14,31 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 from ftplib import FTP
+
+
 class FTPV():
-    def connect(host, login,mdp):
+	def __init__(self, host):
+		self.ftp = FTP(host)
+
+	def connect(login, mdp):
         self.ftp = FTP(host)
         try:
-            self.ftp.login(login,mdp)
+            self.ftp.login(login, mdp)
         except Exception(e):
             raise e
+
     def FileList(SDirectory="main"):
-        if (SDirectory=="main"):
+        if (SDirectory == "main"):
             self.lfile = self.ftp.nlst()
         else:
             self.lfile = self.ftp.nlst(SDirectory)
         return self.lfile
+
     def FileDict(SDirectory="main"):
-        self.dfile={}
-        if (SDirectory=="main"):
+        self.dfile = {}
+        if (SDirectory == "main"):
             for i in range(len(self.ftp.nlst())):
-                self.dfile[i]=self.ftp.nlst()[i]
+                self.dfile[i] = self.ftp.nlst()[i]
         else:
             for i in range(len(self.ftp.nlst(SDirectory))):
-                self.dfile[i]=self.ftp.nlst(SDirectory)[i]
+                self.dfile[i] = self.ftp.nlst(SDirectory)[i]
