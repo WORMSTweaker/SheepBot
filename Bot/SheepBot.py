@@ -337,7 +337,7 @@ def on_ready():
     print(client.user.id)
     hard = discord.Object(id="178882236324642816")
     yield from client.send_message(hard, "On :)")
-    yield from client.change_presence(game=discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
+    yield from client.change_status(game=discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
     print ('Ready')
     
 
@@ -532,7 +532,7 @@ def on_message(message):
             if not True:
                 return
             print ('playing : ', player.title)
-            yield from client.change_presence(game=discord.Game(name=player.title))
+            yield from client.change_status(game=discord.Game(name=player.title))
             hard = discord.Object(id="178882236324642816")
             yield from client.send_message(hard, player.title)
             while player.is_playing():
@@ -618,7 +618,7 @@ def on_message(message):
             player.volume = int(vol)/100
             player.start()
             print ('playing : ', player.title)
-            yield from client.change_presence(game=discord.Game(name=player.title))
+            yield from client.change_status(game=discord.Game(name=player.title))
             hard = discord.Object(id="178882236324642816")
             yield from client.send_message(hard, player.title)
             yield from client.edit_message(tobirater,':notes: :notes: :notes: :notes: :notes: ')
@@ -629,7 +629,7 @@ def on_message(message):
         playnext = []
         porazika = 'noup'
         autozik = 'nop'
-        yield from client.change_presence(game=discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
+        yield from client.change_status(game=discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
 
 
 
@@ -966,7 +966,7 @@ def on_message(message):
                    yield from client.send_message(message.channel, "Vous ne pouvez pas jouer avec vous meme ! Tapez p4restart") 
                 else:
                     Jeu = Board(p1=cp1,p2=cp2)
-                    yield from lient.change_presence(game=discord.Game(name="Puissance 4"))
+                    yield from lient.change_status(game=discord.Game(name="Puissance 4"))
                     tourplay = "p1"
                     yield from client.send_message(message.channel, "Au tour de P1 !")
 
@@ -1130,7 +1130,7 @@ def on_message(message):
 # change statut, Off et Hey bot(prgm test)!
 
     if message.content.startswith('bot'):
-            yield from client.change_presence(game=discord.Game(name=message.content.replace('bot ','')))
+            yield from client.change_status(game=discord.Game(name=message.content.replace('bot ','')))
             yield from client.delete_message(message)
             print (message.content)
             return
