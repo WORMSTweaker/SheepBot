@@ -17,17 +17,19 @@ from ftplib import FTP
 
 
 class FTPV():
+	"""Une interface pour utiliser le ftp"""
 	def __init__(self, host):
 		self.ftp = FTP(host)
 
 	def connect(login, mdp):
-        self.ftp = FTP(host)
+		"""Fonction permettant de se connecter"""
         try:
             self.ftp.login(login, mdp)
         except Exception(e):
             raise e
 
     def FileList(SDirectory="main"):
+    	"""Obtenir une liste des fichiers"""
         if (SDirectory == "main"):
             self.lfile = self.ftp.nlst()
         else:
@@ -35,6 +37,7 @@ class FTPV():
         return self.lfile
 
     def FileDict(SDirectory="main"):
+    	"""Obtenir un dictionnaire des fichiers"""
         self.dfile = {}
         if (SDirectory == "main"):
             for i in range(len(self.ftp.nlst())):

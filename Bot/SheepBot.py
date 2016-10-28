@@ -40,7 +40,6 @@ from mcstatus import MinecraftServer
 from PParser import PParser
 from PyFTP import FTPV
 
-
 wolfclient = wolframalpha.Client('K58L69-KG2G437U8V')
 logging.basicConfig(level=logging.INFO)
 client = discord.Client()
@@ -58,6 +57,8 @@ global p2
 global cp1
 global cp2
 global tourplay
+
+ftp = ""
 
 
 OPUS_LIBS = ['libopus-0.x86.dll', 'libopus-0.x64.dll', 'libopus-0.dll', 'libopus.so.0', 'libopus.0.dylib']
@@ -88,7 +89,7 @@ var = {
 "oui":"Non!!!",
 "meuh":"Ho, une vache",
 "ping":"pong!!",
-"pong":"ping?",
+"pong": "ping?",
 "!ping":"PONG!!!!!",
 "bite":"pfffff, j'en ait 64 alors bon...",
 "encul":"Vazy ta dits quoi la?",
@@ -416,6 +417,34 @@ def on_message(message):
             Stopit = 'pls'
         if message.content.startswith('person'):
             Stopit = 'UUUUIIIII'
+
+#FTP
+
+		if message.content.startswith('ftp'):
+			global ftp
+            yield from client.delete_message(message)
+            host = message.content.replace('ftp ','')
+            ftp = FTPV(host)
+
+        if message.content.startswith('ftpco'):
+        	global ftp
+        	yield from client.delete_message(message)
+        	login = message.content.replace('ftpco ','')
+        	mdp = login.split()[1]
+        	ftp.connect(login,mdp)
+
+        if message.content.startswith('ftpl'):
+        	global ftp
+        	lake = ""
+        	for lik in ftp.FileList():
+        		lake= "| "+lik
+        	yield from client.start_private_message(message.author)
+            yield from client.delete_message(message)
+
+            yield from client.send_message(message.author, lake)
+
+
+        
 
 
 #musik Yeah
