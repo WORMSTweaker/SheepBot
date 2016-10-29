@@ -82,14 +82,8 @@ Lapeti = []
 lepeticreateur = 0
 Banchan = []
 memo = []
-<<<<<<< HEAD
 var = {}
 var = eval(open("quotes.txt", "r").read())
-=======
-
-
-
->>>>>>> origin/master
 
 #-- P4 core
 
@@ -1070,7 +1064,6 @@ def on_message(message):
 
 print('Presque prêt')
 
-<<<<<<< HEAD
 if os.path.isfile("config"):
     with open("config", "r") as file:
         conf = file.readlines()
@@ -1085,8 +1078,5 @@ else:
     file.close()
     print("Aucun fichier de configuration trouvé.")
     print("Il a été créé, veuillez le modifier avec les identifiants de votre bot")
-=======
-client.run('clemen.landier2@gmail.com','3690741')
->>>>>>> origin/master
 
 # END
