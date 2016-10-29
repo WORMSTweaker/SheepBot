@@ -1,0 +1,13 @@
+asyncio
+git+https://github.com/Rapptz/discord.py.git
+logging
+wikipedia
+git+https://github.com/jaraco/wolframalpha.git
+credentials
+inspect
+youtube_dl
+gTTS
+cleverbot
+ffmpy
+mcstatus
+PyNaCl

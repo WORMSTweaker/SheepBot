@@ -1,0 +1,12 @@
+
+pip install --upgrade asyncio
+pip install --upgrade discord
+pip install --upgrade logging
+pip install --upgrade wikipedia
+pip install --upgrade wolframalpha
+pip install --upgrade credentials
+pip install --upgrade inspect
+pip install --upgrade youtube_dl
+pip install --upgrade gTTS
+pip install --upgrade cleverbot
+

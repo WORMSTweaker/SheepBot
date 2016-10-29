@@ -82,16 +82,16 @@ Lapeti = []
 lepeticreateur = 0
 Banchan = []
 memo = []
+<<<<<<< HEAD
+var = {}
+var = eval(open("quotes.txt", "r").read())
+=======
 
 
 
+>>>>>>> origin/master
 
 #-- P4 core
-
-
-
-
-
 
 class Board():
     """Grille de jeu et methodes pour la modifier"""
@@ -248,9 +248,6 @@ class Board():
                         break
             if n > maxAlign: maxAlign = n
         return maxAlign
-        
-
-
 
 p1 = ""
 p2 = ""
@@ -264,10 +261,6 @@ global cp2
 global tourplay
 
 #P4 end
-
-
-        
-
 
 wikipedia.set_lang("fr")
 
@@ -283,7 +276,10 @@ def on_ready():
     yield from client.change_presence(game=discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
     print ('Ready')
     return
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/master
 
 @client.async_event
 def on_resumed():
@@ -302,9 +298,6 @@ def on_member_join(member):
 def on_server_remove(server):
     hard = discord.Object(id="178882236324642816")
     yield from client.send_message(hard, 'Removed : '+server.name)
-
-
-
 
 @client.async_event
 def on_message(message):
@@ -331,10 +324,6 @@ def on_message(message):
                 yield from client.send_message(message.channel, 'Pruning...')
                 pruned = yield from client.prune_members(message.server,days=int(pruneday))
                 yield from client.send_message(message.channel, 'Pruned : '+str(pruned))
-                
-            
-
-
 
 
     if message.content.startswith('chan Off'):
@@ -351,9 +340,6 @@ def on_message(message):
         Stopit = 'pls'
     if message.content.startswith('person'):
         Stopit = 'UUUUIIIII'
-
-
-
 
 
     if message.content.startswith('ftp'):
@@ -379,9 +365,6 @@ def on_message(message):
     	yield from client.send_message(message.author, lake)
 
 
-    
-
-
 #musik Yeah
 
     if message.content.startswith('reco'):
@@ -400,7 +383,6 @@ def on_message(message):
         porazika = 'noup'
 
 
-
     if message.content.startswith('join'):
         voice = yield from client.join_voice_channel(message.author.voice.voice_channel)
         yield from client.delete_message(message)
@@ -414,22 +396,11 @@ def on_message(message):
             yield from client.send_message(message.channel, mUzi)
         return
 
-
-
-
     if message.content.startswith('vol'):
         global vol
         vol = message.content.replace('vol ','')
         print(vol,'%')
         player.volume = int(vol)/100
-        
-
-
-
-
-
-
-
 
 
     if message.content.startswith('autoZik'):
@@ -585,11 +556,6 @@ def on_message(message):
         autozik = 'nop'
 
 
-
-
-
-
-
     if message.content.startswith('Pause'):
         global player
         yield from client.delete_message(message)
@@ -675,7 +641,7 @@ def on_message(message):
     if message.content.startswith('Help'):
             yield from client.send_typing(message.channel)
             yield from asyncio.sleep(1)
-            yield from client.send_message(message.channel, ' Commandes : \n \n - persoff / person : désactive / active les réponses perso \n - Zik *lien_youtbe_ou_soundcloud* : joue la musique / l\'ajoute à la queue \n - join : summon le bot dans le channel de l\'auteur du msg \n - Pause : Met la musique en pause \n - Resume : continue la musique \n - Stop : musique suivante / Stop si aucune musique dans la queue \n - deco : déconnecte le bot du chan vocal  \n - Cbot *nimortequoi* : permet de parler avec le bot \n - wiki *recherche Wikipédia* : recherche Wikipédia \n - dit *un_truc* : fait dire ce que vous voulez au bot \n - 42 : réponse a tout \n - memo add *votre memo* : ajoute un memo \n - memo show : montre vos memos \n -memo remove *votre memo* : supprime le memo \n - remind *nb de minute* : ajoute un rappel dans un temps définit en minute \n - spam *nb* : spam le chan \n - dance / 2dance : Fait danser le bot \n - p4start : créer un p4 \n - play : lance le p4 précédemment créer \n - pfc *pierre/feuille/ciseaux* : joue a pierre feuille ciseaux \n - random *nb* : donne un nombre en entre 0 est le nb choisit \n - me / me-id : donne votre nom et votre id \n - bot *statut* : change le statut du bot  \n -  Sheep random : :smiley: ')
+            yield from client.send_message(message.channel, ' Commandes : \n \n - persoff / person : désactive / active les réponses perso \n - Zik *lien_youtbe_ou_soundcloud* : joue la musique / l\'ajoute à la queue \n - join : summon le bot dans le channel de l\'auteur du msg \n - Pause : Met la musique en pause \n - Resume : continue la musique \n - Stop : musique suivante / Stop si aucune musique dans la queue \n - deco : déconnecte le bot du chan vocal  \n - Cbot *nimortequoi* : permet de parler avec le bot \n - wiki *recherche Wikipédia* : recherche Wikipédia \n - dit *un_truc* : fait dire ce que vous voulez au bot \n - 42 : réponse a tout \n - memo add *votre memo* : ajoute un memo \n - memo show : montre vos memos \n - memo remove *votre memo* : supprime le memo \n - remind *nb de minute* : ajoute un rappel dans un temps définit en minute \n - spam *nb* : spam le chan \n - dance / 2dance : Fait danser le bot \n - p4start : créer un p4 \n - play : lance le p4 précédemment créer \n - pfc *pierre/feuille/ciseaux* : joue a pierre feuille ciseaux \n - random *nb* : donne un nombre en entre 0 est le nb choisit \n - me / me-id : donne votre nom et votre id \n - bot *statut* : change le statut du bot  \n - Sheep random : :smiley: ')
 
 
     if message.content.startswith('wiktype'):
@@ -698,14 +664,12 @@ def on_message(message):
 # dit 42
 
 
-
     if message.content.startswith('dit'):
         yield from client.send_message(message.channel, message.content.replace('dit',''))
 
 
     if message.content.startswith('42'):
         yield from client.send_message(message.channel,random.choice(['Oui','Non','Mais oui c''est clair!','Peut étre..','Nope','oui','non','jsp','oui','non','non','oui','oui','non','VTFF','Té...leportation!','Hum tt de facon,  personne connais l\'origine','Ceci est un message de Jbdo99']))
-
 
 
 #Mute
@@ -771,15 +735,6 @@ def on_message(message):
             yield from client.send_message(message.channel, 'DRIIIIIINNNGGG!!! : '+yp)
 
 
-
-
-
-
-
-
-
-
-
 # PENSER A MODIFIER!!!!
 
     if message.content.startswith('spam'):
@@ -803,10 +758,7 @@ def on_message(message):
                 print (bz)
 
 
-
-
 # Time to dance \o/
-
 
     if message.content.startswith('dance'):
             dan = 0
@@ -980,13 +932,10 @@ def on_message(message):
 
 #THIS IS NOT THE END
 
-#hastag
-
-
-
-
+#hashtag
 
 # le beau code opti :)
+# WORMS: J'ai des doutes sur cela
 # pierre feuille ciseaux
 
     if message.content.startswith('pfc'):
@@ -1119,8 +1068,25 @@ def on_message(message):
 
 
 
-print('presque pret')
+print('Presque prêt')
 
+<<<<<<< HEAD
+if os.path.isfile("config"):
+    with open("config", "r") as file:
+        conf = file.readlines()
+    if conf[0] == 'username@email.com' or conf[1] == 'passswordPASSWORD':
+        print("Nom d'utilisateur/Mot de passe de base, veuillez le/les changer.")
+    else:
+        client.run(conf[0],conf[1])
+else:
+    file = open("config", "w")
+    file.write("username@email.com\n")
+    file.write("passswordPASSWORD")
+    file.close()
+    print("Aucun fichier de configuration trouvé.")
+    print("Il a été créé, veuillez le modifier avec les identifiants de votre bot")
+=======
 client.run('clemen.landier2@gmail.com','3690741')
+>>>>>>> origin/master
 
 # END
