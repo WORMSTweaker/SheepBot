@@ -82,61 +82,7 @@ Lapeti = []
 lepeticreateur = 0
 Banchan = []
 memo = []
-var = {
-"oui":"Non!!!",
-"meuh":"Ho, une vache",
-"ping":"pong!!",
-"pong": "ping?",
-"!ping":"PONG!!!!!",
-"bite":"pfffff, j'en ait 64 alors bon...",
-"encul":"Vazy ta dits quoi la?",
-"FDP":"FTP?",
-"fdp":"FTP?",
-"pute":"coquinne vas!",
-"merde":":poop: ",
-"salop":":point_up_2: ",
-"non":"si!",
-"NON":"SI!!",
-"Non": "sisi",
-"Hello":"its me...",
-"hello":"its me...",
-"Hi":"hello",
-"jb":"jb est mort!",
-"clem":"Le Dieux clément tout puissant (et pas dutout narcicisique vas vous repondre sous peu)",
-"lol":"mdr",
-"mdr":"lol",
-"LOL":"League Of legends",
-"XD":":smile: ",
-"sudo":"sudo-mi!",
-"pourquoi":"Parce que",
-"Ok":":ok_hand: ",
-"pk":"pourquoi???",
-"pff":"fait chier, nan?",
-"oki":"doki",
-"nop":"Objection!!",
-"roo":"lolololo",
-"Raa":"XD",
-"raa":"XD",
-"Bonjour,":"Salut fdp",
-"biatch":"et alors?",
-"Oo":"oO",
-"oO":"Oo",
-"GG":"on s'en fout.",
-"Bite":"Sexy",
-"putain":"de merde",
-"Bouh":"Haaaaaaa",
-"bouh":"HHHHAAAAAAAAAAAAAAA!!!",
-"tg":"tu veux dire La ferme?",
-"Hey":"listen",
-"hey":"listen",
-"nop":"NOPE",
-"HELLO":"du calme...",
-"TADA":"Woooaaaa!",
-"a+":"a-",
-"i was wondering if after all":"NON PAS PLUS",
 
-"test":"testing..."
-}
 
 
 
@@ -331,21 +277,12 @@ mut_mut = ["0","1"]
 def on_ready():
     print('Connected on discord')
     print(client.user.name)
-    print(client.user.id)
+    print("id : ",client.user.id)
     hard = discord.Object(id="178882236324642816")
     yield from client.send_message(hard, "On :)")
-    yield from client.change_status(game=discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
+    yield from client.change_presence(game=discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
     print ('Ready')
-    
-
-            
-            
-    
-    
-
-
-
-
+    return
 
 
 @client.async_event
@@ -529,7 +466,7 @@ def on_message(message):
             if not True:
                 return
             print ('playing : ', player.title)
-            yield from client.change_status(game=discord.Game(name=player.title))
+            yield from client.change_presence(game=discord.Game(name=player.title))
             hard = discord.Object(id="178882236324642816")
             yield from client.send_message(hard, player.title)
             while player.is_playing():
@@ -566,8 +503,6 @@ def on_message(message):
 
 
 
-
-
     if message.content.startswith('Zik'):
         global voice
         global Zika
@@ -583,12 +518,6 @@ def on_message(message):
             Zika = 'on'
 
         musikal = message.content.replace('Zik ','')
-        if musikal.startswith('https://www.youtube.com/playlist'):
-            yield from client.send_message(message.channel, "Playlist non prise en charge")
-            return
-        if musikal.startswith('https://www.youtube.com/channel'):
-            yield from client.send_message(message.channel, "veuillez entrez une video :)")
-            return
 
 
         if lunched == 'yep':
@@ -599,13 +528,6 @@ def on_message(message):
             return
         playnext.append(musikal)
 
-        if musikal.startswith('https://www.youtube.com/playlist'):
-            yield from client.send_message(message.channel, "Playlist non prise en charge")
-            return
-        if musikal.startswith('https://www.youtube.com/channel'):
-            yield from client.send_message(message.channel, "veuillez entrez une video :)")
-            return
-
 
         for lipo in playnext:
             playnext.remove(lipo)
@@ -615,7 +537,7 @@ def on_message(message):
             player.volume = int(vol)/100
             player.start()
             print ('playing : ', player.title)
-            yield from client.change_status(game=discord.Game(name=player.title))
+            yield from client.change_presence(game=discord.Game(name=player.title))
             hard = discord.Object(id="178882236324642816")
             yield from client.send_message(hard, player.title)
             yield from client.edit_message(tobirater,':notes: :notes: :notes: :notes: :notes: ')
@@ -626,7 +548,7 @@ def on_message(message):
         playnext = []
         porazika = 'noup'
         autozik = 'nop'
-        yield from client.change_status(game=discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
+        yield from client.change_presence(game=discord.Game(name=random.choice(["dibou","rtichau","Broutter","la claire fontaine","bricot"])))
 
 
 
@@ -963,7 +885,7 @@ def on_message(message):
                    yield from client.send_message(message.channel, "Vous ne pouvez pas jouer avec vous meme ! Tapez p4restart") 
                 else:
                     Jeu = Board(p1=cp1,p2=cp2)
-                    yield from client.change_status(game=discord.Game(name="Puissance 4"))
+                    yield from client.change_presence(game=discord.Game(name="Puissance 4"))
                     tourplay = "p1"
                     yield from client.send_message(message.channel, "Au tour de P1 !")
 
@@ -1128,7 +1050,7 @@ def on_message(message):
 # change statut, Off et Hey bot(prgm test)!
 
     if message.content.startswith('bot'):
-            yield from client.change_status(game=discord.Game(name=message.content.replace('bot ','')))
+            yield from client.change_presence(game=discord.Game(name=message.content.replace('bot ','')))
             yield from client.delete_message(message)
             print (message.content)
             return
@@ -1199,6 +1121,6 @@ def on_message(message):
 
 print('presque pret')
 
-client.run('mrjbdo99@gmail.com','Progcle2014')
+client.run('clemen.landier2@gmail.com','3690741')
 
 # END

@@ -18,8 +18,7 @@ import asyncio
 
 
 @asyncio.coroutine
-def PParser(
-        url, meth="-g", decode=False):
+def PParser(url, meth="-g", decode=False):
     """
     Fonction pour recupérer une liste contenant les urls d une playlist
     Utilisation : PParser(url, methode(-g ou -e))
